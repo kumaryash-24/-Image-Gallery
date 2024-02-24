@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Gallery with Filter</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f38686; 
+    }
+
+    .header {
+        background-color: #d04545; 
+        color: white; 
+        padding: 20px;
+        text-align: center;
+    }
+
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        grid-gap: 10px;
+        margin: 20px;
+    }
+
+    .item {
+        overflow: hidden;
+        border-radius: 5px;
+    }
+
+    .item img {
+        width: 100%;
+        height: auto;
+        transition: transform 0.3s ease;
+    }
+
+    .item:hover img {
+        transform: scale(1.05);
+    }
+
+    .filter-buttons {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .filter-buttons button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        margin: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .filter-buttons button:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Image Gallery</h1>
+</div>
+
+<div class="filter-buttons">
+    <button class="filter" data-filter="all">All</button>
+    <button class="filter" data-filter="nature">Nature</button>
+    <button class="filter" data-filter="city">City</button>
+    <button class="filter" data-filter="animals">Animals</button>
+</div>
+
+<div class="gallery">
+    <div class="item nature">
+        <img src="nature1.jpg" alt="Nature Image">
+    </div>
+    <div class="item city">
+        <img src="city1.jpg" alt="City Image">
+    </div>
+    <div class="item animals">
+        <img src="animals1.jpg" alt="Animals Image">
+    </div>
+    <div class="item nature">
+        <img src="nature2.jpg" alt="Nature Image">
+    </div>
+    <div class="item city">
+        <img src="city2.jpg" alt="City Image">
+    </div>
+    <div class="item animals">
+        <img src="animals2.jpg" alt="Animals Image">
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const filterButtons = document.querySelectorAll('.filter');
+        const items = document.querySelectorAll('.item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filterValue = button.getAttribute('data-filter');
+                items.forEach(item => {
+                    item.style.display = 'none';
+                    if (item.classList.contains(filterValue) || filterValue === 'all') {
+                        item.style.display = 'block';
+                    }
+                });
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
